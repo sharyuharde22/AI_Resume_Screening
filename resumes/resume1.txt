@@ -1,0 +1,2 @@
+Python developer with experience in machine learning, data analysis, Flask,
+scikit-learn, and SQL. Worked on NLP projects.

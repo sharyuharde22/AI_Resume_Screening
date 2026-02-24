@@ -1,0 +1,62 @@
+# AI Resume Screening System (ATS)
+
+An AI-powered Resume Screening System that automatically evaluates and ranks resumes based on their relevance to a given job description using Natural Language Processing (NLP).
+
+This project simulates the core functionality of a real-world Applicant Tracking System (ATS) by reducing manual resume screening and improving hiring efficiency.
+
+---
+
+## 🚀 Features
+- Upload multiple resumes (PDF / TXT)
+- Upload job description
+- Text preprocessing using NLP techniques
+- Resume ranking using TF-IDF and cosine similarity
+- Web-based interface built with Flask
+- Industry-style ATS workflow
+
+---
+
+## 🧠 How It Works
+1. Resumes and job descriptions are converted into numerical vectors using **TF-IDF**
+2. **Cosine similarity** measures how closely each resume matches the job description
+3. Resumes are ranked based on similarity scores
+4. Recruiters receive a sorted list of best-matching candidates
+
+---
+
+## 🛠 Tech Stack
+- **Python**
+- **Flask**
+- **Scikit-learn**
+- **Natural Language Processing (NLP)**
+- **TF-IDF Vectorization**
+- **Cosine Similarity**
+- **HTML/CSS**
+
+---
+
+## 📂 Project Structure
+
+AI_Resume_Screening/
+│
+├── uploads/
+│ ├── jd/
+│ └── resumes/
+├── templates/
+│ └── index.html
+├── app.py
+├── resume_ranker.py
+├── requirements.txt
+└── README.md
+
+
+---
+
+## ▶️ How to Run
+```bash
+pip install -r requirements.txt
+python app.py
+
+Open browser and visit:
+
+http://127.0.0.1:5000
