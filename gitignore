@@ -1,4 +1,6 @@
 __pycache__/
 uploads/
+.venv/
+*.pyc
 *.log
 .env

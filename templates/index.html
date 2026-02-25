@@ -3,41 +3,57 @@
 <head>
     <title>AI Resume Screening System</title>
     <style>
-        body { font-family: Arial; background: #f4f6f8; padding: 40px; }
-        .box { background: white; padding: 30px; width: 65%; margin: auto; border-radius: 10px; }
-        h1 { color: #2c3e50; }
-        input, button { margin: 10px 0; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        body { font-family: Arial; background: #eef2f7; padding: 40px; }
+        .box { background: white; padding: 30px; width: 80%; margin: auto; border-radius: 10px; }
+        h1 { text-align: center; color: #2c3e50; }
+        button { background: #3498db; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; margin-top: 25px; }
         th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
-        button { padding: 10px 20px; background: #2ecc71; border: none; color: white; cursor: pointer; }
+        th { background: #f4f6f8; }
+        .tag { background: #2ecc71; color: white; padding: 5px 8px; margin: 2px; display: inline-block; border-radius: 5px; }
+        .missing { background: #e74c3c; }
     </style>
 </head>
 <body>
 
 <div class="box">
-    <h1>📄 AI Resume Screening System</h1>
+    <h1>📄 AI Resume Screening System (ATS)</h1>
 
     <form method="POST" enctype="multipart/form-data">
-        <label><b>Upload Job Description (PDF / TXT)</b></label><br>
-        <input type="file" name="job_description" required><br><br>
+        <p><b>Upload Job Description</b></p>
+        <input type="file" name="job_description" required>
 
-        <label><b>Upload Resumes (Multiple PDF / TXT)</b></label><br>
+        <p><b>Upload Resumes</b></p>
         <input type="file" name="resumes" multiple required><br><br>
 
-        <button type="submit">Rank Resumes</button>
+        <button type="submit">Analyze Resumes</button>
     </form>
 
     {% if results %}
-    <h2>📊 Ranking Results</h2>
     <table>
         <tr>
             <th>Resume</th>
-            <th>Match Score</th>
+            <th>Similarity %</th>
+            <th>Skill Match %</th>
+            <th>Matched Skills</th>
+            <th>Missing Skills</th>
         </tr>
-        {% for resume, score in results %}
+
+        {% for r in results %}
         <tr>
-            <td>{{ resume }}</td>
-            <td>{{ "%.2f"|format(score * 100) }}%</td>
+            <td>{{ r.name }}</td>
+            <td>{{ r.similarity }}</td>
+            <td>{{ r.skill_match }}</td>
+            <td>
+                {% for s in r.matched_skills %}
+                    <span class="tag">{{ s }}</span>
+                {% endfor %}
+            </td>
+            <td>
+                {% for s in r.missing_skills %}
+                    <span class="tag missing">{{ s }}</span>
+                {% endfor %}
+            </td>
         </tr>
         {% endfor %}
     </table>

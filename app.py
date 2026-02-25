@@ -15,17 +15,14 @@ def home():
     results = None
 
     if request.method == "POST":
-        # Save Job Description
         jd_file = request.files["job_description"]
         jd_path = os.path.join(UPLOAD_JD, jd_file.filename)
         jd_file.save(jd_path)
 
-        # Save Resumes
         resume_files = request.files.getlist("resumes")
         for r in resume_files:
             r.save(os.path.join(UPLOAD_RESUMES, r.filename))
 
-        # Rank resumes
         results = rank_resumes(UPLOAD_RESUMES, jd_path)
 
     return render_template("index.html", results=results)
